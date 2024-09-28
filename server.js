@@ -3,7 +3,15 @@ const connection=require("./utils/connection")
 const secret=require("./config/secret")
 const REST_routes=require("./routes/routes");
 const errorHandling=require("./middleware/errorHandling");
+const cors=require("cors")
 const app=express();
+
+
+app.use(cors({ 
+    origin: "*",// if you add ,urls then is in array
+    credentials:true
+}))
+
 
 app.use(express.json());
 

@@ -9,5 +9,5 @@ routes.post("/login",AuthController.logIn);
 
 //admin routes
 routes.get("/allUsers",verifyAdmin,AdminController.getAllUsers);
-
+routes.patch("/accessAdmin/:UserID",verifyAdmin,AdminController.adminAccess)
 module.exports=routes;
