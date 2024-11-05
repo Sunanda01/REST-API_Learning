@@ -5,7 +5,7 @@ const UserSchema= new mongoose.Schema({
     email:{type:String, required:true, unique:true},
     password:{type:String, required:true, minlength:4},
     isAdmin:{type:Boolean, default :false},
-},{timestamp:true})
+},{timestamp:true});
 
 // const User=mongoose.model("User",UserSchema);
 module.exports=mongoose.model("Users",UserSchema);

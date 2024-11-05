@@ -3,11 +3,16 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const bcrypt_SaltLevel = require("../config/secret").bcrypt_SaltLevel;
 const JWT_Hashvalue = require("../config/secret").JWT_Hashvalue;
+const validateUser=require('../Helper/validateUser');
 
 const AuthController = {
   async register(req, res, next) {
     // console.log(req.body)
     const { email, password, name, isAdmin } = req.body;
+    const {error,value}=await validateUser(req.body);
+    if(error){
+      return res.status(400).json({error:error.details[0].message});
+    }
     //  console.log(typeof(bcrypt_SaltLevel))
     //encryption
     const salt = bcrypt.genSaltSync(Number(bcrypt_SaltLevel));
