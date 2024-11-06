@@ -1,8 +1,8 @@
 const Joi=require('joi');
 const productSchema=Joi.object({
-    name:Joi.string().required(),
-    price:Joi.number().required(),
-    qty:Joi.number().required(),
+    name:Joi.string().pattern(new RegExp('^[a-zA-Z0-9]+$')).min(3).required(),
+    price:Joi.number().min(1).required(),
+    qty:Joi.number().min(1).required(),
     img:Joi.string()
 })
 

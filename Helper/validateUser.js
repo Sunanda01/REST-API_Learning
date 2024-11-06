@@ -1,8 +1,8 @@
 const Joi=require('joi');
 const userSchema=Joi.object({
-    name:Joi.string().required(),
-    email:Joi.string().email().required(),
-    password:Joi.string().min(5).required(),
+    name:Joi.string().pattern(new RegExp('^[a-zA-Z]+$')).min(3).required(),
+    email:Joi.string().email({minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+    password:Joi.string().required(),
     isAdmin:Joi.boolean().required()
 });
 

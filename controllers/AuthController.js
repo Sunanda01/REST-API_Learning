@@ -26,7 +26,15 @@ const AuthController = {
 
     try {
       await newUser.save(); //const user=await newUser.save() => save object of DB we will get
-      return res.status(201).json({ MSG: "User Sign up successfully" });
+      return res.status(201).json({ MSG: "User Sign up successfully",
+        user:{
+          name,
+          email,
+          password:newUser.password,
+          isAdmin,
+          id:newUser._id
+        }
+       });
     } catch (err) {
       next(err);
     }
