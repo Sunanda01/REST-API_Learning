@@ -4,7 +4,8 @@ const AdminController=require("../controllers/AdminController")
 const AuthController=require("../controllers/AuthController");
 const {verifyAdmin,verifyToken}=require("../middleware/verifyToken");
 const UserControl=require("../controllers/UserController")
-
+const productControl=require('../controllers/ProductController')
+const upload=require('../services/multer');
 
 routes.get("/health",HealthCheckController.HealthCheck);
 routes.post("/signup",AuthController.register);
@@ -19,6 +20,8 @@ routes.get("/onlyUsersCount",verifyAdmin,AdminController.onlyUsersCount);
 //user routes
 routes.delete("/deleteUser",verifyToken,UserControl.deleteprofile);
 
+//product routes
+routes.post("/productEntry",upload.single("img"),productControl.proRegister);
 
 
 module.exports=routes;
