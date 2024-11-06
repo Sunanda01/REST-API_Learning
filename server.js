@@ -1,20 +1,21 @@
-const express=require("express")
-const connection=require("./utils/connection")
-const secret=require("./config/secret")
+const express=require("express");
+const connection=require("./utils/connection");
+const secret=require("./config/secret");
 const REST_routes=require("./routes/routes");
 const errorHandling=require("./middleware/errorHandling");
-const cors=require("cors")
+const cors=require("cors");
 
 const app=express();
-
 
 app.use(cors({ 
     origin: "*",// if you add ,urls then is in array
     credentials:true
 }))
 
-
 app.use(express.json());
+
+app.use('/Uploads', express.static('Uploads'));
+//http://http://localhost:8000/Uploads/img_name
 
 // app.get("/",(req,res)=>{
 //     try{
@@ -22,7 +23,6 @@ app.use(express.json());
 //        return  res.status(200).json({msg:"API WORKS PERFECTLY"});
 //     }catch(err){
 //         console.log(err)
-        
 //     }
 // })
 app.use("/api",REST_routes);
@@ -34,4 +34,3 @@ app.listen(secret.PORT,async()=>{
     console.log(`Server is running at ${secret.PORT}`);
     await connection()
 })
-//12345 - sunanda
