@@ -23,7 +23,7 @@ const UserControl={
                 name:item.name,
                 email:item.email
             }))
-            await client.set("Reddis",JSON.stringify(result));
+            await client.set("Reddis",JSON.stringify(result),"EX",60); //expire RedisDB data in 60sec
             console.log("Saving in RedisDB!!!!!!!!");
             return res.status(200).json(result);
         }catch(err){
