@@ -19,6 +19,7 @@ routes.get("/onlyUsersCount",verifyAdmin,AdminController.onlyUsersCount);
 
 //user routes
 routes.delete("/deleteUser",verifyToken,UserControl.deleteprofile);
+routes.get("/getUser",UserControl.getUser);
 
 //product routes
 routes.post("/productEntry",upload.single("img"),productControl.proRegister);
